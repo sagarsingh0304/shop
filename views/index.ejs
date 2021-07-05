@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <h1>this is the landing page.</h1>
+    <main class="main-container">
+        <section class="main-item" id="filter-block">
+            <form action="/filter" method="GET">
+                <label class="input-item">
+                    Max Price 
+                    <input type="number" name="price" id="max-price">
+                </label> 
+                <label class="input-item">
+                    Min Rating 
+                    <input type="number" name="rating" id="min-rating" max="5">
+                </label>
+                <button id="filter" class="input-item">Apply Filters</button>
+            </form>
+        </section>
+        <section class="main-item">
+            <ul id="list-container">
+                <% productList.forEach(function(product) { %>
+                    <li class="list-items">
+                        <div class="product-image-container">
+                            <img src= "/images/<%= product.filename %>" alt= "<%= product.description%>" class="product-image">
+
+                        </div>
+                        <span class="list-item-content product-title"><%= product.title %></span>
+                        <span class="list-item-content">
+                            <span class="product-type"><%= product.type %></span>
+                            <span class="product-price">$<%= product.price %></span>
+                        </span>
+                        <span class="list-item-content product-rating"> 
+                            <% for(let i =0; i < product.rating; i++) { %>
+                                ⭐                                
+                            <% } %> 
+                            <%= product.rating %>
+                        </span>
+                    </li>
+                <% }) %>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>
